@@ -23,8 +23,9 @@ spec:
     spec:
       containers:
       - name: cart
-        image: "lingadevops/cart:{{ .Values.deployment.imageVersion }}"
-        imagePullPolicy: Always
+        image: "cart:{{ .Values.deployment.imageVersion }}"
+        # image: "lingadevops/cart:{{ .Values.deployment.imageVersion }}"
+        # imagePullPolicy: Always
         resources:
           requests:
             cpu: "50m"

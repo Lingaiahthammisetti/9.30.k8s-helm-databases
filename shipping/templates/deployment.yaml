@@ -23,8 +23,9 @@ spec:
     spec:
       containers:
       - name: shipping
-        image: "lingadevops/shipping:{{ .Values.deployment.imageVersion }}"
-        imagePullPolicy: Always
+        image: "shipping:{{ .Values.deployment.imageVersion }}"
+        # image: "lingadevops/shipping:{{ .Values.deployment.imageVersion }}"
+        # imagePullPolicy: Always
         resources:
           requests:
             cpu: "150m"

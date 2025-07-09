@@ -133,8 +133,9 @@ spec:
     spec:
       containers:
       - name: web
-        image: lingadevops/web:v1
-        imagePullPolicy: Always
+        image: web:v1.1
+        # image: lingadevops/web:v1.1
+        # imagePullPolicy: Always
         resources:
           requests:
             cpu: "50m"
