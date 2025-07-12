@@ -4,3 +4,7 @@ metadata:
   name: ebs-sc
 provisioner: ebs.csi.aws.com
 volumeBindingMode: WaitForFirstConsumer
+
+# We are using ebs dynamic volumes.
+
+Create ebs volume and StorageClass

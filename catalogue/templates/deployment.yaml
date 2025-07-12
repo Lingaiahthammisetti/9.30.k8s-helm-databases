@@ -23,9 +23,9 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: "catalogue:{{ .Values.deployment.imageVersion }}"
-        # image: "lingadevops/catalogue:{{ .Values.deployment.imageVersion }}"
-        # imagePullPolicy: Always
+        # image: "catalogue:{{ .Values.deployment.imageVersion }}"
+        image: "lingadevops/catalogue:{{ .Values.deployment.imageVersion }}"
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: "50m"

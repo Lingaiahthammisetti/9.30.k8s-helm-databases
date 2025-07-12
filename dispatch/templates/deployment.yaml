@@ -23,6 +23,6 @@ spec:
     spec:
       containers:
       - name: dispatch
-        image: dispatch:v1.1
-        # image: lingadevops/dispatch:v1.1
-        # imagePullPolicy: Always
+        # image: dispatch:v1.1
+        image: lingadevops/dispatch:v1.5
+        imagePullPolicy: Always

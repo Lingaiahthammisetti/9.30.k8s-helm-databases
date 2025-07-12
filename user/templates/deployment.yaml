@@ -23,9 +23,9 @@ spec:
     spec:
       containers:
       - name: user
-        image: "user:{{ .Values.deployment.imageVersion }}"
-        # image: "lingadevops/user:{{ .Values.deployment.imageVersion }}"
-        # imagePullPolicy: Always
+        # image: "user:{{ .Values.deployment.imageVersion }}"
+        image: "lingadevops/user:{{ .Values.deployment.imageVersion }}"
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: "50m"

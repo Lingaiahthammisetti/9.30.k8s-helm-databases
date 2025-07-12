@@ -24,8 +24,8 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: "mongodb:{{ .Values.statefulset.imageVersion }}"
-        # image: "lingadevops/mongodb:{{ .Values.statefulset.imageVersion }}"
+        # image: "mongodb:{{ .Values.statefulset.imageVersion }}"
+        image: "lingadevops/mongodb:{{ .Values.statefulset.imageVersion }}"
         volumeMounts:
         - name: mongodb
           mountPath: /data/db

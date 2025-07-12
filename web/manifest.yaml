@@ -133,9 +133,9 @@ spec:
     spec:
       containers:
       - name: web
-        image: web:v1.1
-        # image: lingadevops/web:v1.1
-        # imagePullPolicy: Always
+        #image: web:v1.1
+        image: lingadevops/web:v1.5
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: "50m"
@@ -205,7 +205,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: "roboshop.lingaiah.online"
+  - host: "roboshop.lithesh.shop"
     http:
       paths:
       - pathType: Prefix

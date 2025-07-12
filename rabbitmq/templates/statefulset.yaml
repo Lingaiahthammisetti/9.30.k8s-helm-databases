@@ -24,8 +24,8 @@ spec:
     spec:
       containers:
       - name: rabbitmq
-        image: rabbitmq
-        # image: lingadevops/rabbitmq
+        #image: rabbitmq
+        image: lingadevops/rabbitmq:v1.5
         envFrom:
         - secretRef:
             name: rabbitmq
