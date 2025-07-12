@@ -24,7 +24,7 @@ spec:
       containers:
       - name: payment
         # image: "mysql:{{ .Values.statefulset.imageVersion }}"
-        image: "joindevops/mysql:{{ .Values.statefulset.imageVersion }}"
+        image: "lingadevops/payment:{{ .Values.statefulset.imageVersion }}"
         imagePullPolicy: Always
         resources:
           requests:
