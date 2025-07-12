@@ -76,60 +76,40 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n ku
 kubectl get pods -n kube-system
 ```
 
+# Run the application in Kubernetes
 
+kubens roboshop
+helm install mysql ./mysql
+helm install mongodb ./mongodb
+helm install rabbitmq ./rabbitmq
+helm install redis ./redis
 
+helm install catalogue ./catalogue
+helm install cart ./cart
+helm install user ./user
+helm install shipping ./shipping
+helm install payment ./payment
 
+helm install web ./web
+helm install debug ./debug
+helm install dispatch ./dispatch
 
+kubectl get pods 
+helm uninstall mysql ./mysql
+helm uninstall mongodb ./mongodb
+helm uninstall rabbitmq ./rabbitmq
+helm uninstall redis ./redis
 
+helm uninstall catalogue ./catalogue
+helm uninstall cart ./cart
+helm uninstall user ./user
+helm uninstall shipping ./shipping
+helm uninstall payment ./payment
 
+helm uninstall web ./web
+helm uninstall debug ./debug
+helm uninstall dispatch ./dispatch
 
-
-
-# Run the application in kubernetes
-
-Roboshop templatize helm charts
-```
-kubectl apply -f namespace.yaml
-```
-```
-kubectl apply -f sc.yaml
-```
-```
-kubectl apply -f mysql/manifest.yaml
-```
-```
-kubectl apply -f mongodb/manifest.yaml
-```
-```
-kubectl apply -f rabbitmq/manifest.yaml
-```
-```
-kubectl apply -f redis/manifest.yaml
-```
-```
-kubectl apply -f catalogue/manifest.yaml
-```
-```
-kubectl apply -f cart/manifest.yaml
-```
-```
-kubectl apply -f user/manifest.yaml
-```
-```
-kubectl apply -f shipping/manifest.yaml
-```
-```
-kubectl apply -f payment/manifest.yaml
-```
-```
-kubectl apply -f web/manifest.yaml
-```
-```
-kubectl apply -f debug/manifest.yaml
-```
-```
-kubectl apply -f dispatch/manifest.yaml
-```
 
 
 
