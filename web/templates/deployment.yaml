@@ -24,7 +24,7 @@ spec:
       containers:
       - name: web
         #image: web:v1.1
-        image: lingadevops/web:{{ .Values.deployment.imageVersion }}"
+        image: "lingadevops/web:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         resources:
           requests:
