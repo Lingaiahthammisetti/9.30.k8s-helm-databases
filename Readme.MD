@@ -89,13 +89,14 @@ for svc in debug dispatch web catalogue cart user shipping payment mysql mongodb
 ```
 
 * Create a Route 53 record for load balancer:
+```
 Record name: roboshop.lithesh.shop
 Record type: A
 Value: dualstack.k8s-roboshop-88b56e4454-917414125.us-east-1.elb.amazonaws.com.
 Alias: Yes
 TTL (seconds):1
 Routing policy: Simple
-
+```
 * Run the application in Kubernetes
 ```
 kubens roboshop
