@@ -1,5 +1,16 @@
-# EBS Dynamic Provisioning  Steps:
-==================================================
+* Create a roboshop namespace and move to it using kubens.
+```
+kubectl apply -f namespace.yaml
+```
+```
+kubectl apply -f sc.yaml
+```
+
+```
+kubens roboshop
+```
+
+* EBS Dynamic Provisioning  Steps:
 1. We need to install the EBS CSI drivers in EKS cluster.
 kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.32"
 2. Your nodes should have access to connect with EBS volumes. Attach EBS CSI policy to the EC2 instance role.
@@ -8,9 +19,9 @@ kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernete
 $kubectl get sc
 $kubectl api-resources
 
-# Important Note: Please add this policy ‘ElasticLoadBalancingFullAccess’ to EKS Worker node's IAM role and execute it.
+* Important Note: Please add this policy ‘ElasticLoadBalancingFullAccess’ to EKS Worker node's IAM role and execute it.
 
-# Ingress Controller - AWS Load Balancer Controller installation
+* Ingress Controller - AWS Load Balancer Controller installation
 https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.8/deploy/installation/
 
 1. Create an IAM OIDC provider. You can skip this step if you already have one for your cluster.
@@ -71,19 +82,12 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n ku
 kubectl get pods -n kube-system
 ```
 
-```
-kubectl apply -f namespace.yaml
-```
-```
-kubectl apply -f sc.yaml
-```
-
-Helm install loop with 60-second delay:
+* Helm install loop with 60-second delay:
 ```
 for svc in mysql mongodb rabbitmq redis catalogue cart user shipping payment web debug dispatch; do helm install "$svc" "./$svc"; echo "================" ; done
 ```
 
-Helm uninstall loop with 60-second delay:
+* Helm uninstall loop with 60-second delay:
 ```
 for svc in debug dispatch web catalogue cart user shipping payment mysql mongodb rabbitmq redis; do helm uninstall "$svc"; echo ""==============; done
 ```
