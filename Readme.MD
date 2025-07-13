@@ -80,11 +80,18 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n ku
 kubectl get pods -n kube-system
 ```
 
+```
+kubectl apply -f namespace.yaml
+```
+```
+kubectl apply -f sc.yaml
+```
+
 Helm install loop with 60-second delay:
 for svc in mysql mongodb rabbitmq redis catalogue cart user shipping payment web debug dispatch; do helm install "$svc" "./$svc"; sleep 60; done
 
 Helm uninstall loop with 60-second delay:
-for svc in debug dispatch web catalogue cart user shipping payment mysql mongodb rabbitmq redis; do helm uninstall "$svc"; sleep 60; done
+for svc in debug dispatch web catalogue cart user shipping payment mysql mongodb rabbitmq redis; do helm uninstall "$svc";  done
 
 # Run the application in Kubernetes
 kubens roboshop
