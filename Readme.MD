@@ -54,16 +54,7 @@ eksctl create iamserviceaccount \
 aws eks update-kubeconfig --region us-east-1 --name expense
 ```
 
-Helm Installation Steps:
-```
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-```
-```
-chmod 700 get_helm.sh
-```
-```
-./get_helm.sh
-```
+* Helm already installed on k8s workstation.
 
 5. Add the EKS chart repo to Helm
 ```
@@ -88,13 +79,28 @@ kubectl apply -f sc.yaml
 ```
 
 Helm install loop with 60-second delay:
-for svc in mysql mongodb rabbitmq redis catalogue cart user shipping payment web debug dispatch; do helm install "$svc" "./$svc"; sleep 60; done
+```
+for svc in mysql mongodb rabbitmq redis catalogue cart user shipping payment web debug dispatch; do helm install "$svc" "./$svc"; echo "================" ; done
+```
 
 Helm uninstall loop with 60-second delay:
-for svc in debug dispatch web catalogue cart user shipping payment mysql mongodb rabbitmq redis; do helm uninstall "$svc";  done
+```
+for svc in debug dispatch web catalogue cart user shipping payment mysql mongodb rabbitmq redis; do helm uninstall "$svc"; echo ""==============; done
+```
 
-# Run the application in Kubernetes
+* Create a Route 53 record for load balancer:
+Record name: roboshop.lithesh.shop
+Record type: A
+Value: dualstack.k8s-roboshop-88b56e4454-917414125.us-east-1.elb.amazonaws.com.
+Alias: Yes
+TTL (seconds):1
+Routing policy: Simple
+
+* Run the application in Kubernetes
+```
 kubens roboshop
+```
+```
 helm install mysql ./mysql
 helm install mongodb ./mongodb
 helm install rabbitmq ./rabbitmq
@@ -107,8 +113,12 @@ helm install payment ./payment
 helm install web ./web
 helm install debug ./debug
 helm install dispatch ./dispatch
+```
 
+```
 kubectl get pods 
+```
+```
 helm uninstall web ./web
 helm uninstall debug ./debug
 helm uninstall dispatch ./dispatch
@@ -121,3 +131,4 @@ helm uninstall mysql ./mysql
 helm uninstall mongodb ./mongodb
 helm uninstall rabbitmq ./rabbitmq
 helm uninstall redis ./redis
+```
