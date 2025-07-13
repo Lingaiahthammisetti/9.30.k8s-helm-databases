@@ -33,7 +33,11 @@ aws iam create-policy \
     --policy-name AWSLoadBalancerControllerIAMPolicy \
     --policy-document file://iam-policy.json
 ```
+* (Optional) Use Existing Policy:
+```
+aws iam list-policies --query "Policies[?PolicyName=='AWSLoadBalancerControllerIAMPolicy'].Arn" --output text
 
+```
 4. Create an IAM role and Kubernetes ServiceAccount for the LBC. Use the ARN from the previous step.
 ```
 eksctl create iamserviceaccount \
@@ -76,40 +80,37 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n ku
 kubectl get pods -n kube-system
 ```
 
-# Run the application in Kubernetes
+Helm install loop with 60-second delay:
+for svc in mysql mongodb rabbitmq redis catalogue cart user shipping payment web debug dispatch; do helm install "$svc" "./$svc"; sleep 60; done
 
+Helm uninstall loop with 60-second delay:
+for svc in debug dispatch web catalogue cart user shipping payment mysql mongodb rabbitmq redis; do helm uninstall "$svc"; sleep 60; done
+
+# Run the application in Kubernetes
 kubens roboshop
 helm install mysql ./mysql
 helm install mongodb ./mongodb
 helm install rabbitmq ./rabbitmq
 helm install redis ./redis
-
 helm install catalogue ./catalogue
 helm install cart ./cart
 helm install user ./user
 helm install shipping ./shipping
 helm install payment ./payment
-
 helm install web ./web
 helm install debug ./debug
 helm install dispatch ./dispatch
 
 kubectl get pods 
-helm uninstall mysql ./mysql
-helm uninstall mongodb ./mongodb
-helm uninstall rabbitmq ./rabbitmq
-helm uninstall redis ./redis
-
+helm uninstall web ./web
+helm uninstall debug ./debug
+helm uninstall dispatch ./dispatch
 helm uninstall catalogue ./catalogue
 helm uninstall cart ./cart
 helm uninstall user ./user
 helm uninstall shipping ./shipping
 helm uninstall payment ./payment
-
-helm uninstall web ./web
-helm uninstall debug ./debug
-helm uninstall dispatch ./dispatch
-
-
-
-
+helm uninstall mysql ./mysql
+helm uninstall mongodb ./mongodb
+helm uninstall rabbitmq ./rabbitmq
+helm uninstall redis ./redis
